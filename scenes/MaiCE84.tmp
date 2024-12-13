@@ -1,0 +1,115 @@
+[gd_scene load_steps=13 format=4 uid="uid://bsk1fqlaopb7g"]
+
+[ext_resource type="PackedScene" uid="uid://dune6hb665jr5" path="res://objects/player.tscn" id="1_67fiw"]
+[ext_resource type="Texture2D" uid="uid://cahcii8cm3avr" path="res://images/sky_0.png" id="1_gd3h6"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_ot6ry"]
+[ext_resource type="PackedScene" uid="uid://dih4i0h2ay6d2" path="res://objects/block.tscn" id="2_6ex72"]
+[ext_resource type="Texture2D" uid="uid://c0jfqjqq8cth3" path="res://images/vignette.png" id="4_1j5sh"]
+[ext_resource type="PackedScene" uid="uid://cjmw3v0etqv4v" path="res://objects/false_block.tscn" id="5_o8cdo"]
+[ext_resource type="PackedScene" uid="uid://ch2hanmgjdifh" path="res://objects/spikes.tscn" id="6_g068t"]
+[ext_resource type="PackedScene" uid="uid://bebaivrx4wndy" path="res://objects/boundary.tscn" id="7_0alv4"]
+[ext_resource type="FontFile" uid="uid://d0wtqe2o6yogm" path="res://fonts/SingleDay-Regular.ttf" id="9_b2mdn"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ix2ce"]
+scenes/1/scene = ExtResource("2_6ex72")
+scenes/2/scene = ExtResource("5_o8cdo")
+scenes/3/scene = ExtResource("6_g068t")
+scenes/4/scene = ExtResource("7_0alv4")
+
+[sub_resource type="TileSet" id="TileSet_4sprc"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetScenesCollectionSource_ix2ce")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6664t"]
+font = ExtResource("9_b2mdn")
+font_size = 24
+outline_size = 1
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ot6ry")
+
+[node name="sky" type="Sprite2D" parent="."]
+position = Vector2(400, 400)
+texture = ExtResource("1_gd3h6")
+
+[node name="player" parent="." instance=ExtResource("1_67fiw")]
+position = Vector2(400, -35)
+
+[node name="Blocks" type="Node2D" parent="."]
+process_mode = 4
+visible = false
+
+[node name="Node2D" parent="Blocks" instance=ExtResource("2_6ex72")]
+position = Vector2(256, 400)
+scale = Vector2(10, 1)
+
+[node name="Node2D2" parent="Blocks" instance=ExtResource("2_6ex72")]
+position = Vector2(432, 336)
+
+[node name="Node2D3" parent="Blocks" instance=ExtResource("2_6ex72")]
+position = Vector2(432, 368)
+
+[node name="Node2D4" parent="Blocks" instance=ExtResource("2_6ex72")]
+position = Vector2(464, 304)
+
+[node name="Node2D5" parent="Blocks" instance=ExtResource("2_6ex72")]
+position = Vector2(464, 272)
+
+[node name="Node2D6" parent="Blocks" instance=ExtResource("2_6ex72")]
+position = Vector2(464, 240)
+
+[node name="Node2D7" parent="Blocks" instance=ExtResource("2_6ex72")]
+position = Vector2(464, 208)
+
+[node name="Node2D8" parent="Blocks" instance=ExtResource("2_6ex72")]
+position = Vector2(464, 176)
+
+[node name="Node2D9" parent="Blocks" instance=ExtResource("5_o8cdo")]
+position = Vector2(496, 176)
+
+[node name="Node2D10" parent="Blocks" instance=ExtResource("5_o8cdo")]
+position = Vector2(528, 176)
+
+[node name="Node2D11" parent="Blocks" instance=ExtResource("5_o8cdo")]
+position = Vector2(592, 176)
+
+[node name="AnimatableBody2D" parent="Blocks" instance=ExtResource("6_g068t")]
+position = Vector2(256, 288)
+
+[node name="AnimatableBody2D2" parent="Blocks" instance=ExtResource("6_g068t")]
+position = Vector2(224, 288)
+
+[node name="AnimatableBody2D3" parent="Blocks" instance=ExtResource("6_g068t")]
+position = Vector2(192, 288)
+
+[node name="Level" type="Node2D" parent="."]
+position = Vector2(400, 400)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Level"]
+position = Vector2(-400, -400)
+tile_map_data = PackedByteArray("AAAUABUAAAAAAAAABAAVABQAAAAAAAAABAAWABMAAAAAAAAABAAXABIAAAAAAAAABAAXABEAAAAAAAAABAAXABAAAAAAAAAABAAYAA8AAAAAAAAABAAYAA4AAAAAAAAABAAYAA0AAAAAAAAABAAYAAwAAAAAAAAABAAYAAsAAAAAAAAABAAYAAoAAAAAAAAABAAYAAkAAAAAAAAABAAXAAgAAAAAAAAABAAXAAcAAAAAAAAABAAWAAUAAAAAAAAABAAVAAQAAAAAAAAABAAQAAEAAAAAAAAABAAGAAgAAAAAAAAAAQAGAAkAAAAAAAAAAQAGAAoAAAAAAAAAAQAGAA8AAAAAAAAAAQAHABAAAAAAAAAAAQAIABAAAAAAAAAAAQAKAA8AAAAAAAAAAQAOAAsAAAAAAAAAAQAQAAkAAAAAAAAAAQAUAAMAAAAAAAAABAACAAgAAAAAAAAAAQACAA0AAAAAAAAAAQAGABAAAAAAAAAAAQAOAAwAAAAAAAAAAQAQAAoAAAAAAAAAAQAMAAAAAAAAAAAABAALAAAAAAAAAAAABAAKAAAAAAAAAAAABAAJAAAAAAAAAAAABAAIAAEAAAAAAAAABAAHAAEAAAAAAAAABAAGAAEAAAAAAAAABAAAAAwAAAAAAAAABAAGAA4AAAAAAAAAAQAKAAwAAAAAAAAAAQALAAwAAAAAAAAAAQASAAEAAAAAAAAABAACAAkAAAAAAAAAAQAEAAMAAAAAAAAABAADAAQAAAAAAAAABAACAAUAAAAAAAAABAABAAcAAAAAAAAABAABAAgAAAAAAAAABAAAAAoAAAAAAAAABAAAAAsAAAAAAAAABAAFAAIAAAAAAAAABAADAAgAAAAAAAAAAQACAAoAAAAAAAAAAQABAAYAAAAAAAAABAAAAAkAAAAAAAAABAAEAAgAAAAAAAAAAQACABAAAAAAAAAAAQACAA8AAAAAAAAAAQACAA4AAAAAAAAAAQADAAwAAAAAAAAAAQACAAwAAAAAAAAAAQACAAsAAAAAAAAAAQAEAAwAAAAAAAAAAQAGAAwAAAAAAAAAAQAGAA0AAAAAAAAAAQAGAAsAAAAAAAAAAQAKAAkAAAAAAAAAAQAMAAgAAAAAAAAAAQALAAgAAAAAAAAAAQAKAA0AAAAAAAAAAQAMABAAAAAAAAAAAQAKAAsAAAAAAAAAAQAKAAoAAAAAAAAAAQAKAAgAAAAAAAAAAQALABAAAAAAAAAAAQAKABAAAAAAAAAAAQAKAA4AAAAAAAAAAQAMAAwAAAAAAAAAAQAOAAkAAAAAAAAAAQAPAAgAAAAAAAAAAQAOAAoAAAAAAAAAAQAOAA4AAAAAAAAAAQAOAA0AAAAAAAAAAQAPAAwAAAAAAAAAAQAQAAwAAAAAAAAAAQAQAA0AAAAAAAAAAQAQAA4AAAAAAAAAAQAQAA8AAAAAAAAAAQAQABAAAAAAAAAAAQAOABAAAAAAAAAAAQAQAAsAAAAAAAAAAQAOAA8AAAAAAAAAAQATAAgAAAAAAAAAAQASAAsAAAAAAAAAAQAUAA0AAAAAAAAAAQAWAAsAAAAAAAAAAQAWAAoAAAAAAAAAAQAWAAwAAAAAAAAAAQAWAA0AAAAAAAAAAQAWAA4AAAAAAAAAAQAWABAAAAAAAAAAAQATABYAAAAAAAAABAAUAAgAAAAAAAAAAQATAAwAAAAAAAAAAQASABAAAAAAAAAAAQAWAAkAAAAAAAAAAQAWAAgAAAAAAAAAAQAXAAYAAAAAAAAABAAUAA8AAAAAAAAAAQAUAA4AAAAAAAAAAQATABAAAAAAAAAAAQASAAkAAAAAAAAAAQASAAoAAAAAAAAAAQATAAIAAAAAAAAABAAOAAAAAAAAAAAABAANAAAAAAAAAAAABAAPAAAAAAAAAAAABAARAAEAAAAAAAAABAASABcAAAAAAAAABAARABcAAAAAAAAABAAQABcAAAAAAAAABAALABgAAAAAAAAABAAKABgAAAAAAAAABAAMABgAAAAAAAAABAAPABgAAAAAAAAABAAJABgAAAAAAAAABAAGABcAAAAAAAAABAAHABcAAAAAAAAABAAIABcAAAAAAAAABAAOABgAAAAAAAAABAANABgAAAAAAAAABAABABAAAAAAAAAABAAAAA8AAAAAAAAABAAAAA4AAAAAAAAABAAAAA0AAAAAAAAABAABABEAAAAAAAAABAACABMAAAAAAAAABAAFABYAAAAAAAAABAABABIAAAAAAAAABAADABQAAAAAAAAABAAEABUAAAAAAAAABAA=")
+tile_set = SubResource("TileSet_4sprc")
+
+[node name="Vignette" type="Sprite2D" parent="."]
+position = Vector2(400, 400)
+texture = ExtResource("4_1j5sh")
+
+[node name="top_text" type="Label" parent="."]
+offset_left = 244.0
+offset_top = 128.0
+offset_right = 553.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 24
+text = "PRESS THE ARROW KEYS TO PLAY!"
+label_settings = SubResource("LabelSettings_6664t")
+horizontal_alignment = 1
+
+[node name="bottom_text" type="Label" parent="."]
+offset_left = 244.0
+offset_top = 672.0
+offset_right = 553.0
+offset_bottom = 697.0
+theme_override_font_sizes/font_size = 24
+text = "A GAME BY: KEVEN VAILLANCOURT"
+label_settings = SubResource("LabelSettings_6664t")
+horizontal_alignment = 1

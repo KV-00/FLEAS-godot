@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://6rtibjrc1dws"]
+
+[ext_resource type="Script" path="res://scripts/jelly.gd" id="1_k1chi"]
+[ext_resource type="Texture2D" uid="uid://cbijosr80x8mj" path="res://images/jelly_2.png" id="2_tmmge"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u06fn"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lit1n"]
+atlas = ExtResource("2_tmmge")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g8nc"]
+atlas = ExtResource("2_tmmge")
+region = Rect2(34, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_legrp"]
+atlas = ExtResource("2_tmmge")
+region = Rect2(68, 0, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vncs3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lit1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g8nc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_legrp")
+}],
+"loop": true,
+"name": &"level 2",
+"speed": 10.0
+}]
+
+[node name="jelly" type="AnimatableBody2D"]
+sync_to_physics = false
+script = ExtResource("1_k1chi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u06fn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vncs3")
+animation = &"level 2"
+autoplay = "level 2"
