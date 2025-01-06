@@ -15,10 +15,10 @@ func change_graphics(name:int):
 	if name == 1:
 		$AnimatedSprite2D.play("level 1")
 		$GPUParticles2D.set_texture(particle_1)
-	if name == 2:
+	elif name == 2:
 		$AnimatedSprite2D.play("level 2")
 		$GPUParticles2D.set_texture(particle_2)
-	if name == 3:
+	elif name == 3:
 		$AnimatedSprite2D.play("level 3")
 		$GPUParticles2D.set_texture(particle_3)
 

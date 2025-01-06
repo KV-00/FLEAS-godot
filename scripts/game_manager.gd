@@ -73,21 +73,21 @@ func set_level():
 		vignette_color = vignette_color_0
 		text_color = text_color_0
 		$player/AnimatedSprite2D.modulate = Color.WHITE
-	if level == 1:
+	elif level == 1:
 		$Level.current_level = 1
 		sky = sky_1
 		RenderingServer.set_default_clear_color(vignette_color_1)
 		vignette_color = vignette_color_1
 		text_color = text_color_1
 		$player/AnimatedSprite2D.modulate = Color.WHITE
-	if level == 2:
+	elif level == 2:
 		$Level.current_level = 2
 		sky = sky_2
 		RenderingServer.set_default_clear_color(vignette_color_2)
 		vignette_color = vignette_color_2
 		text_color = text_color_2
 		$player/AnimatedSprite2D.modulate = Color.WHITE
-	if level == 3:
+	elif level == 3:
 		$Level.current_level = 3
 		sky = sky_3
 		RenderingServer.set_default_clear_color(vignette_color_3)
@@ -98,10 +98,10 @@ func set_level():
 	vignette_color_tween_function()
 	# change text + button colors
 	text_color_tween_function()
-	# check the current level
-	SignalBus.emit_signal("check_level", level)
 	# place the current level
 	$Level.place_level()
+	# check the current level
+	SignalBus.emit_signal("check_level", level)
 
 func level_switching_function(name:int):
 	# set what the last level currently was
@@ -110,11 +110,11 @@ func level_switching_function(name:int):
 	# handle changing the level
 	if name == 0:
 		level = 0
-	if name == 1:
+	elif name == 1:
 		level = 1
-	if name == 2:
+	elif name == 2:
 		level = 2
-	if name == 3:
+	elif name == 3:
 		level = 3
 	# handle resetting the level upon changing levels
 	if last_level != level:
@@ -128,8 +128,8 @@ func level_switching_function(name:int):
 		bottom_text_tween_function()
 		# change sky sprite
 		sky_tween_function()
-	# change level assets and colors
-	set_level()
+		# change level assets and colors
+		set_level()
 
 func get_time():
 	# return a best time if on title screen
